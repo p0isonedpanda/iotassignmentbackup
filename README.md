@@ -6,3 +6,4 @@ just a backup if our other attempts don't pan out as we hope for this assignment
 * php mysqli
 * mariadb
 * mysql-connector-python
+* OpenWeatherMap API key
