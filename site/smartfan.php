@@ -14,5 +14,11 @@
 	    </ul>
 	</nav>
     </header>
+
+    <main>
+        <?php
+            include "weather.php";
+        ?>
+    </main>
 </body>
 </html>
