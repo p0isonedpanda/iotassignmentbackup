@@ -14,5 +14,9 @@
 	    </ul>
 	</nav>
     </header>
+    
+    <main>
+        <?php include "highscores.php"; ?>
+    </main>
 </body>
 </html>
