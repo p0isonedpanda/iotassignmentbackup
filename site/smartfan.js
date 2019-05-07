@@ -5,15 +5,18 @@ setInterval(() => {
     });
 }, 50);
 
-setInterval(() => {
-    $.ajax({url: "targettemp.php"}).done((output) => {
-    	$("#targettemp").html(output);
-    });
-}, 50);
-
 // update user input into db
 $().ready(() => {
+    $.ajax({url: "targettemp.php"}).done((output) => {
+        $("#targettemp").html(output);
+    });
+
     $("#targettemp-control").change(() => {
-    	$.post("updatetargettemp.php", { target: $("#targettemp-control").val() });
+    	$.post("updatetargettemp.php", { target: $("#targettemp-control").val() })
+		.done(() => {
+                    $.ajax({url: "targettemp.php"}).done((output) => {
+                    	$("#targettemp").html(output);
+                    });
+		});
     });
 });

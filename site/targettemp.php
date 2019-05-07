@@ -13,6 +13,6 @@
 
     echo "<p>Target Temp: " . $targetTemp . "°C</p>";
     echo "<div class='progress'>";
-    echo "    <div class='progress-bar progress-bar-striped progress-bar-animated bg-info' style='width: " . $targetTemp * 2 ."%' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='50'></div>";
+    echo "    <div class='progress-bar bg-info' style='width: " . $targetTemp * 2 ."%' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='50'></div>";
     echo "</div>";
 ?>
