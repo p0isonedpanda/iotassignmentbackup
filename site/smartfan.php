@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>Smart Fan</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="./smartfan.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +25,20 @@
         <div class="row">
             <h1 class="display-1">Smart Fan</h1>
         </div>
-        <?php include "weather.php"; ?>
+
+        <div class="row">
+            <div class="col">
+                <?php include "weather.php"; ?>
+            </div>
+            <div class="col" id="sensortemp">
+                <!-- <?php include "sensortemp.php" ?> -->
+            </div>
+            <div class="col">
+                <!-- <?php include "targettemp.php" ?> -->
+                <div id="targettemp"></div>
+		<input type="range" class="custom-range" id="targettemp-control" name="targettemp" min="0" max="50"/>
+            </div>
+        </div>
     </main>
 </body>
 </html>
