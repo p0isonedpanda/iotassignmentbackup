@@ -7,16 +7,19 @@ setInterval(() => {
 
 // update user input into db
 $().ready(() => {
-    $.ajax({url: "targettemp.php"}).done((output) => {
-        $("#targettemp").html(output);
+    $.post("updatetargettemp.php", { target: $("#targettemp-control").val() })
+	.done(() => {
+            $.ajax({url: "targettemp.php"}).done((output) => {
+                $("#targettemp").html(output);
+            });
     });
 
     $("#targettemp-control").change(() => {
     	$.post("updatetargettemp.php", { target: $("#targettemp-control").val() })
-		.done(() => {
-                    $.ajax({url: "targettemp.php"}).done((output) => {
-                    	$("#targettemp").html(output);
-                    });
-		});
+	    .done(() => {
+                $.ajax({url: "targettemp.php"}).done((output) => {
+                    $("#targettemp").html(output);
+                });
+	});
     });
 });
