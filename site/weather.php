@@ -8,5 +8,5 @@
     $json = file_get_contents("http://api.openweathermap.org/data/2.5/weather?q=Melbourne,au&units=metric&APPID=" . $apikey);
     $data = json_decode($json);
     
-    echo "Current Temp: " . round($data->main->temp);
+    echo "<p>Current Temp: " . round($data->main->temp) . "</p>";
 ?>

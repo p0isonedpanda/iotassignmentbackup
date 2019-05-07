@@ -17,7 +17,7 @@
     $query = "SELECT * FROM highscores ORDER BY score DESC LIMIT 3";
     $result = $conn->query($query);
 
-    echo "<table><tr><th>Name</th><th>Score</th></tr>";
+    echo "<table class='table'><tr><th>Name</th><th>Score</th></tr>";
     // print results in table
     while ($row = $result->fetch_assoc()) {
 	echo "<tr><td>" . $row["name"] . "</td><td>" . $row["score"] . "</td></tr>";
