@@ -27,8 +27,8 @@
         </div>
         
         <div class="row">
-            <div class="col">
-                <?php include "highscores.php"; ?>
+            <div class="col" id="highscores">
+                <!-- <?php include "highscores.php"; ?> -->
             </div>
             <div class="col">
 		<div id="playerinfo">
