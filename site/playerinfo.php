@@ -15,5 +15,15 @@
     echo "<p>Level: " . $level . "</p>";
     echo "<p>Progress: " . $levelProgress . "</p>";
 
+    $started = "<p>Game Started: ";
+
+    if ($row["started"] == 0) {
+	$started .= "No";
+    } else {
+	$started .= "Yes";
+    }
+
+    echo $started . "</p>";
+
     $conn->close();
 ?>
