@@ -45,6 +45,9 @@
                         <span class="input-group-text">Name</span>
                     </div>
                     <input type="text" class="form-control" id="name" placeholder="Please enter your name" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" id="startgame" type="button">Start Game</button>
+                    </div>
                 </div>
                 <p id="test"></p>
             </div>
