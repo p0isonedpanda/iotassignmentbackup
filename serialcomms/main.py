@@ -1,21 +1,47 @@
 import serial
 import mysql.connector as mariadb
 
-def SmartFan():
-    print("smart fan")
-
-def MemoryGame():
-    print("memory game")
-
 # set up db connection
 conn = mariadb.connect(user="pi", password="YEETers", database="test")
 cursor = conn.cursor(buffered=True)
 
 # set up serial comms
 try:
-    port = serial.Serial('/dev/ttyACM0', 57600)
+    port = serial.Serial('/dev/ttyACM0', 9600)
+    print("connected to arduino")
 except:
     print("could not connect to arduino");
+
+def SmartFan():
+    global conn
+    global cursor
+    global port
+
+    # update sensor temp
+    while port.in_waiting:
+        current = port.readline().rstrip('\r\n\0')
+    query = "UPDATE smartfan SET sensor = " + str(current)
+    cursor.execute(query)
+    conn.commit()
+
+    # this is so hacky but i'm beyond the point of caring
+    query = "SELECT * FROM smartfan"
+    cursor.execute(query)
+    conn.commit()
+    current = cursor.fetchall()[0][0]
+
+    # check if fan should be on or off
+    query = "SELECT * FROM smartfan"
+    cursor.execute(query)
+    conn.commit()
+    threshold = cursor.fetchall()[0][1]
+    if current > threshold: # check if we are above threshold
+        port.write(b"1")
+    else:
+        port.write(b"0")
+
+def MemoryGame():
+    print("memory game")
 
 # read from serial
 while True:
