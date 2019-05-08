@@ -10,3 +10,12 @@ setInterval(() => {
     	$("#highscores").html(output);
     });
 }, 50);
+
+// update user input into db
+$().ready(() => {
+    $.post("updateusername.php", { name: $("#name").val() })
+
+    $("#name").change(() => {
+        $.post("updateusername.php", { name: $("#name").val() })
+    });
+});

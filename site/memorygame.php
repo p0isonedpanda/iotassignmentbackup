@@ -34,6 +34,13 @@
 		<div id="playerinfo">
 		    <!-- <?php include "playerinfo.php"; ?> -->
                 </div>
+		<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Name</span>
+                    </div>
+                    <input type="text" class="form-control" id="name" placeholder="Please enter your name" />
+                </div>
+                <p id="test"></p>
             </div>
         </div>
     </main>
