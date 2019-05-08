@@ -3,6 +3,8 @@
 <head>
     <title>Memory Game</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="./memorygame.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,7 +31,9 @@
                 <?php include "highscores.php"; ?>
             </div>
             <div class="col">
-                <?php include "playerinfo.php"; ?>
+		<div id="playerinfo">
+		    <!-- <?php include "playerinfo.php"; ?> -->
+                </div>
             </div>
         </div>
     </main>
