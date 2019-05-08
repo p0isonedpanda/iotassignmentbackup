@@ -11,9 +11,15 @@
 </head>
 
 <body>
+    <?php
+        include "dbconnect.php";
+	$query = "UPDATE state SET smartfan = 1";
+	$conn->query($query);
+	$conn->close();
+    ?>
     <header>
 	<nav class="navbar navbar-expand navbar-dark bg-dark sticky-top">
-            <a href="index.html" class="navbar-brand">IoT Group Assignment</a>
+            <a href="index.php" class="navbar-brand">IoT Group Assignment</a>
 	    <ul class="navbar-nav">
 	        <li class="nav-item"><a href="smartfan.php" class="nav-link">Smart Fan</a></li>
                 <li class="nav-item"><a href="memorygame.php" class="nav-link">Memory Game</a></li>
