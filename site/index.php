@@ -42,7 +42,7 @@
 	        <li class="list-group-item">Ang Yu Fan</li>
 	        <li class="list-group-item">Daniel Coady</li>
 	        <li class="list-group-item">Gareth Clauson</li>
-	        <li class="list-group-item">James Hassal</li>
+	        <li class="list-group-item">James Hassall</li>
 	        <li class="list-group-item">Josiah Sonsie</li>
 	    </ul>
 	</div>
