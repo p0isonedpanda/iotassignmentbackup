@@ -55,6 +55,7 @@ def MemoryGame():
     global cursor
     global port
     global gamestate
+    global answered
 
     # check if we are going to start the game
     query = "SELECT * FROM memorygame"
@@ -68,19 +69,22 @@ def MemoryGame():
         conn.commit()
         gamestate = False
         answered = True
-        pass
+        #print("not started")
+        return
 
     # now it's gamer time
     if not gamestate:
         port.write(b"0") # tell the arduino that we are ready to go
         gamestate = True
+        #print("started")
 
     if answered:
         # set number of beeps
+        num = str(random.randint(1, 9))
+        print(num)
         query = "UPDATE memorygame SET answer = " + num
         cursor.execute(query)
         conn.commit()
-        num = str(random.randint(1, 9))
 
         # set difficulty
         query = "SELECT * FROM memorygame"
@@ -99,44 +103,47 @@ def MemoryGame():
         port.write(str.encode(num + ">"))
         answered = False
 
-    while port.in_waiting:
-        guess = port.readline().rstrip('\r\n\0')
+    while True:
+        while port.in_waiting:
+            guess = port.readline().rstrip('\r\n\0')
 
-    try:
-        query = "UPDATE memorygame SET guess = " + guess
-        cursor.execute(query)
-        conn.commit()
+        try:
+            query = "UPDATE memorygame SET guess = " + guess
+            cursor.execute(query)
+            conn.commit()
+            break
+        except:
+            pass
         
-        query = "SELECT * FROM memorygame"
+    query = "SELECT * FROM memorygame"
+    cursor.execute(query)
+    conn.commit()
+    qresult = cursor.fetchall()
+    guess = qresult[0][5]
+    answer = qresult[0][4]
+
+    # answer is incorrect
+    if guess != answer:
+        score = qresult[0][0]
+        name = qresult[0][3]
+        query = "INSERT INTO highscores (name, score) VALUES ('" + name + "', " + str(score) + ")"
         cursor.execute(query)
         conn.commit()
-        guess = cursor.fetchall()[0][5]
-        answer = cursor.fetchall()[0][4]
 
-        # answer is incorrect
-        if guess != answer:
-            score = cursor.fetchall()[0][0]
-            name = cursor.fetchall()[0][3]
-            query = "INSERT INTO highscores (name, score) VALUES ('" + name + "', " + score + ")"
-            cursor.execute(query)
-            conn.commit()
-
-            query = "UPDATE memorygame SET started = 0"
-            cursor.execute(query)
-            conn.commit()
-        else: # answer is correct
-            answered = True
-            progress = cursor.fetchall()[0][1]
-            level = cursor.fetchall()[0][0]
-            progress += 1
-            if progress == 4:
-                progress = 1
-                level += 1
-            query = "UPDATE memorygame SET level = " + str(level) + ", progress = " + str(progress)
-            cursor.execute(query)
-            conn.commit()
-    except:
-        pass
+        query = "UPDATE memorygame SET started = 0"
+        cursor.execute(query)
+        conn.commit()
+    else: # answer is correct
+        answered = True
+        progress = qresult[0][1]
+        level = qresult[0][0]
+        progress += 1
+        if progress == 4:
+            progress = 1
+            level += 1
+        query = "UPDATE memorygame SET level = " + str(level) + ", progress = " + str(progress)
+        cursor.execute(query)
+        conn.commit()
 
 # read from serial
 while True:
