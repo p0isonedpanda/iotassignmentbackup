@@ -12,6 +12,7 @@
 
 <body>
     <?php
+        include "resetmemorygame.php";
         include "dbconnect.php";
 	$query = "UPDATE state SET smartfan = 0";
 	$conn->query($query);
