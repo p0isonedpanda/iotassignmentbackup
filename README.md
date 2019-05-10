@@ -7,3 +7,10 @@ just a backup if our other attempts don't pan out as we hope for this assignment
 * mariadb
 * mysql-connector-python
 * OpenWeatherMap API key
+
+## Arduino dependancies
+* Dallas Temperature (found inside the libray searcher)
+* [NewTone](https://forum.arduino.cc/index.php?topic=143940.0)
+* OneWire (found inside the libray searcher)
+* [SevSeg] (https://github.com/DeanIsMe/SevSeg)
+* [IR Remote] (https://github.com/z3t0/Arduino-IRremote)
